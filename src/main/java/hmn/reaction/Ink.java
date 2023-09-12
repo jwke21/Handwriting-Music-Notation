@@ -21,8 +21,11 @@ public class Ink implements I.Show {
   public void show(Graphics g) { g.setColor(UC.defaultInkColor); norm.drawAt(g, vs); }
 
   //--------------------------- Norm ---------------------------
+
+  /**
+   * Normalized coordinate system within which shape matching will occur.
+   */
   public static class Norm extends G.PL implements Serializable {
-    // Normalized coordinate system within which shape matching will occur
     public static final int N = UC.normSampleSize, MAX = UC.normCoordMax;
     public static final G.VS normCoordSys = new G.VS(0, 0, MAX, MAX); // Normalized coordinate system
 
@@ -40,7 +43,11 @@ public class Ink implements I.Show {
       }
     }
 
-    // Computes Euclidean distance between this Norm and another
+    /**
+     * Computes Euclidean distance between this Norm and another
+     * @param n
+     * @return
+     */
     public int dist(Norm n) {
       int res = 0;
       for (int i = 0; i < N; i++) {

@@ -47,11 +47,17 @@ public class Shape implements Serializable {
     public void blend(Ink.Norm norm) { blend(norm, nBlend); nBlend++; }
 
     // -------------------- List -------------------
+    /**
+     * List of Shape prototypes which will be used for matching gestures.
+     */
     public static class List extends ArrayList<Prototype> implements Serializable {
-      // List of Shape prototypes
       public static Prototype bestMatch; // Set by side effect in min/best dist
 
-      // Compute distance to each prototype and keep minimum one (doesn't have to succeed)
+      /**
+       * Computes distance to each prototype and keeps the minimum distance. (Doesn't have to succeed).
+       * @param norm
+       * @return
+       */
       public int bestDist(Ink.Norm norm) {
         bestMatch = null; // Assume no match
         int res = UC.noMatchDist;
@@ -64,7 +70,11 @@ public class Shape implements Serializable {
 
       private static int m = 10, w = 60; // Cells: margin, width
       private static G.VS showBox = new G.VS(m, m, w, w);
-      // Shows all prototypes
+
+      /**
+       * Shows all prototypes.
+       * @param g
+       */
       public void show(Graphics g) {
         g.setColor(Color.ORANGE);
         for (int i = 0; i < size(); i++) {
@@ -92,6 +102,9 @@ public class Shape implements Serializable {
   }
 
   // -------------------- Database -------------------
+  /**
+   * Shape database used to associate shape names with their prototypes.
+   */
   public static class Database extends HashMap<String, Shape> {
 
     public Database() {
